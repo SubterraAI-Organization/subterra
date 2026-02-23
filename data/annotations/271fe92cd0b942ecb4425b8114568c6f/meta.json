@@ -1,0 +1,39 @@
+{
+  "saved_at": "2026-02-23T01:41:18.823364+00:00",
+  "annotation_id": "271fe92cd0b942ecb4425b8114568c6f",
+  "original_filename": "CS_T474_L007.PNG",
+  "image_filename": "CS_T474_L007.PNG",
+  "mask_filename": "CS_T474_L007_mask.png",
+  "image_width_px": 2550,
+  "image_height_px": 2273,
+  "mask_width_px": 2550,
+  "mask_height_px": 2273,
+  "run_id": "batch1",
+  "mask_nonzero_fraction": 0.025938252115628477,
+  "source": "subterra-hil-gui",
+  "model_type": "unet",
+  "threshold_area": 50,
+  "scaling_factor": 0.008466666666666667,
+  "metrics": {
+    "root_count": 45,
+    "average_root_diameter": 0.01644542862274067,
+    "total_root_length": 51.77366666666667,
+    "total_root_area": 1.6004269066666672,
+    "total_root_volume": 1.732489171865356
+  },
+  "corrected": true,
+  "capture_mode": "minirhizotron",
+  "meta": {
+    "field": "CS",
+    "tube_id": "T474",
+    "depth": 7,
+    "depth_length_cm": 10,
+    "timepoint": "T1",
+    "session_label": "session_1",
+    "session_time": "2026-02-23T01:40:56.972Z",
+    "camera_model": "CID CI-600 In-Situ Root Imager",
+    "camera_dpi": 300,
+    "pixel_to_cm": 0.008466666666666667,
+    "image_size_cm": "21.6 x 19.6"
+  }
+}

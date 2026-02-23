@@ -1,0 +1,16 @@
+# OS / temp
+.DS_Store
+__pycache__/
+*.pyc
+
+# Runtime outputs
+outputs/
+
+# Local docker/cache artifacts
+.gui_cache/
+*.log
+
+# Keep these DB files tracked by default in this release module
+# (remove next lines if you want them ignored)
+# data/subterra.sqlite3
+# data/subterra_genotype.sqlite3

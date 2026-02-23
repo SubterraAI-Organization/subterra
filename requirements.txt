@@ -1,0 +1,16 @@
+numpy
+pandas
+pillow
+opencv-python
+matplotlib
+scikit-image
+scipy
+torch
+torchvision
+ultralytics
+fastapi
+uvicorn[standard]
+python-multipart
+pydantic
+sqlalchemy>=2.0
+psycopg2-binary

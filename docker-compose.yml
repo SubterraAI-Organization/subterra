@@ -1,0 +1,80 @@
+services:
+  nginx:
+    image: nginx:alpine
+    ports:
+      - "8080:80"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - gui
+      - api
+      - genotype
+    restart: unless-stopped
+
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    expose:
+      - "8001"
+    environment:
+      - CORS_ALLOW_ORIGINS=http://localhost,http://localhost:80,http://127.0.0.1,http://127.0.0.1:80,http://nginx
+      - SUBTERRA_ANNOTATIONS_DIR=/app/data/annotations
+      - SUBTERRA_MODELS_DIR=/app/data/models
+      # API key management / ingestion
+      - SUBTERRA_API_KEY_SECRET=subterra-key-secret-change-me
+      - SUBTERRA_ADMIN_TOKEN=subterra-admin-change-me
+      # Set to 1 to require API keys for /analyze, /batch-analyze, /annotations, /train/unet
+      - SUBTERRA_REQUIRE_API_KEY=0
+    volumes:
+      - ./data/annotations:/app/data/annotations
+      - ./data/models:/app/data/models
+      # Persist phenotyping outputs (analyses table) on the host so genotype mapping can reuse them.
+      - ./data/subterra.sqlite3:/app/data/subterra.sqlite3
+      # Mount your model weights here (optional, but required for /analyze to work)
+      - ./subterra_model/models/saved_models:/app/subterra_model/models/saved_models:ro
+    deploy:
+      resources:
+        limits:
+          memory: 4G
+        reservations:
+          memory: 1G
+    restart: unless-stopped
+
+  gui:
+    build:
+      context: ./gui
+      dockerfile: Dockerfile
+    expose:
+      - "3000"
+    environment:
+      - NEXT_PUBLIC_API_BASE_URL=/api
+      - NEXT_PUBLIC_GENOTYPE_BASE_URL=/genotype-api
+    depends_on:
+      - api
+    restart: unless-stopped
+
+  genotype:
+    build:
+      context: ./genotype_service
+      dockerfile: Dockerfile
+    expose:
+      - "8002"
+    environment:
+      - CORS_ALLOW_ORIGINS=http://localhost,http://localhost:80,http://127.0.0.1,http://127.0.0.1:80,http://nginx
+      # Where to read phenotypes from (the API's `analyses` table). Defaults to sqlite:///data/subterra.sqlite3.
+      - PHENOTYPE_DATABASE_URL=sqlite:///data/subterra.sqlite3
+      # Search marker files in both classic marker folder and project-level genotype_data.
+      - MARKER_SOURCE_DIRS=/app/data/markers,/app/genotype_data
+    volumes:
+      # Persist uploaded markers + mapping history.
+      - ./data/subterra_genotype.sqlite3:/app/data/subterra_genotype.sqlite3
+      # Read-only access to the API phenotyping DB.
+      - ./data/subterra.sqlite3:/app/data/subterra.sqlite3:ro
+      # Optional bundled marker datasets (downloaded/converted on host).
+      - ./data/markers:/app/data/markers:ro
+      # User-provided genotype resources (e.g. sorghum SNP/INDEL files, tube/genotype maps).
+      - ./genotype_data:/app/genotype_data:ro
+      # Export GWAS figures (SVG + CSV) to the host.
+      - ./outputs/gwas_exports:/app/exports
+    restart: unless-stopped

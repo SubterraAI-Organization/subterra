@@ -1,0 +1,508 @@
+:root {
+  --bg: #0b1020;
+  --panel: #111a33;
+  --muted: #a6b0d6;
+  --text: #e9edff;
+  --border: rgba(255, 255, 255, 0.12);
+  --accent: #7aa2ff;
+  --danger: #ff6b6b;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica,
+    Arial, "Apple Color Emoji", "Segoe UI Emoji";
+  background-color: var(--bg);
+  background-image: radial-gradient(1000px 700px at 20% 0%, rgba(122, 162, 255, 0.22) 0%, rgba(11, 16, 32, 0) 60%),
+    radial-gradient(900px 700px at 80% 10%, rgba(70, 120, 255, 0.12) 0%, rgba(11, 16, 32, 0) 55%);
+  background-attachment: fixed;
+  color: var(--text);
+}
+
+a {
+  color: inherit;
+}
+
+button,
+input,
+select {
+  font: inherit;
+}
+
+.container {
+  max-width: 1520px;
+  margin: 0 auto;
+  padding: 18px 20px 24px;
+}
+
+.pageRoot {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.pageBody {
+  flex: 1;
+}
+
+.row {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.panel {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.03));
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 14px;
+}
+
+.panelTitle {
+  font-size: 14px;
+  color: var(--muted);
+  margin: 0 0 10px;
+}
+
+.btn {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid var(--border);
+  color: var(--text);
+  border-radius: 10px;
+  padding: 10px 12px;
+  cursor: pointer;
+}
+
+.btnPrimary {
+  background: rgba(122, 162, 255, 0.18);
+  border-color: rgba(122, 162, 255, 0.35);
+}
+
+.btnDanger {
+  background: rgba(255, 107, 107, 0.15);
+  border-color: rgba(255, 107, 107, 0.35);
+}
+
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.label {
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.input,
+.select {
+  background: rgba(0, 0, 0, 0.2);
+  border: 1px solid var(--border);
+  color: var(--text);
+  border-radius: 10px;
+  padding: 10px 12px;
+  min-width: 220px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 340px 1fr;
+  gap: 16px;
+  align-items: start;
+}
+
+@media (max-width: 980px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+}
+
+@media (max-width: 980px) {
+  .cards {
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  }
+}
+
+@media (max-width: 520px) {
+  .cards {
+    grid-template-columns: 1fr;
+  }
+}
+
+.appShell {
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  gap: 16px;
+  align-items: start;
+}
+
+@media (max-width: 980px) {
+  .appShell {
+    grid-template-columns: 1fr;
+  }
+}
+
+.topNav {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  backdrop-filter: blur(10px);
+  background: linear-gradient(180deg, rgba(11, 16, 32, 0.92), rgba(11, 16, 32, 0.72));
+  border-bottom: 1px solid var(--border);
+}
+
+.topNavInner {
+  max-width: 1520px;
+  margin: 0 auto;
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+@media (max-width: 980px) {
+  .topNavInner {
+    padding: 10px 14px;
+  }
+  .container {
+    padding: 14px 14px 20px;
+  }
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  min-width: 0;
+}
+
+.brandText {
+  display: grid;
+  gap: 2px;
+  min-width: 0;
+}
+
+.brandName {
+  font-size: 16px;
+  letter-spacing: 0.3px;
+  font-weight: 600;
+  color: rgba(233, 237, 255, 0.98);
+}
+
+.brandTag {
+  font-size: 12px;
+  color: rgba(166, 176, 214, 0.95);
+}
+
+.userButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 34px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid var(--border);
+  color: var(--text);
+  cursor: pointer;
+}
+
+.progressWrap {
+  display: grid;
+  gap: 6px;
+}
+
+.progressTrack {
+  position: relative;
+  height: 6px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  overflow: hidden;
+}
+
+.progressFill {
+  height: 100%;
+  background: linear-gradient(90deg, rgba(122, 162, 255, 0.35), rgba(122, 162, 255, 0.85));
+}
+
+.progressIndeterminate::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  width: 35%;
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.0), rgba(122, 162, 255, 0.7), rgba(255, 255, 255, 0.0));
+  transform: translateX(-120%);
+  animation: indeterminate 1.2s ease-in-out infinite;
+}
+
+@keyframes indeterminate {
+  0% {
+    transform: translateX(-120%);
+  }
+  100% {
+    transform: translateX(320%);
+  }
+}
+
+.progressLabel {
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.list {
+  display: grid;
+  gap: 10px;
+}
+
+.item {
+  display: grid;
+  grid-template-columns: 70px 1fr;
+  gap: 10px;
+  padding: 10px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: rgba(0, 0, 0, 0.14);
+  cursor: pointer;
+}
+
+.itemActive {
+  border-color: rgba(122, 162, 255, 0.5);
+  box-shadow: 0 0 0 3px rgba(122, 162, 255, 0.12);
+}
+
+.thumb {
+  width: 70px;
+  height: 70px;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.meta {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+
+.filename {
+  font-size: 14px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.status {
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.statusError {
+  color: var(--danger);
+}
+
+.editorWrap {
+  display: grid;
+  gap: 12px;
+}
+
+.canvasFrame {
+  position: relative;
+  border-radius: 14px;
+  border: 1px solid var(--border);
+  overflow: auto;
+  background: rgba(0, 0, 0, 0.18);
+}
+
+.canvasStage {
+  position: relative;
+  display: inline-block;
+}
+
+.canvasStage img,
+.canvasStage canvas {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+.canvasStage canvas {
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+.hint {
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.tableWrap {
+  overflow: auto;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: rgba(0, 0, 0, 0.12);
+}
+
+.dataTable {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  min-width: 720px;
+}
+
+.dataTable th,
+.dataTable td {
+  text-align: left;
+  padding: 9px 10px;
+  border-bottom: 1px solid var(--border);
+  vertical-align: top;
+}
+
+.dataTable thead th {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  background: linear-gradient(180deg, rgba(17, 26, 51, 0.98), rgba(17, 26, 51, 0.92));
+  color: var(--muted);
+}
+
+.dataTable tbody tr:hover {
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.dataTable tbody tr[data-active="true"] {
+  background: rgba(122, 162, 255, 0.07);
+}
+
+.dataTable tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.tableSortBtn {
+  appearance: none;
+  border: none;
+  background: transparent;
+  color: inherit;
+  padding: 0;
+  cursor: pointer;
+  font: inherit;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.tableToolbar {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  align-items: flex-end;
+  flex-wrap: wrap;
+}
+
+.tableToolbarLeft,
+.tableToolbarRight {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.tableSearch {
+  min-width: 260px;
+}
+
+.tableFooter {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.pager {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.footer {
+  border-top: 1px solid var(--border);
+  background: rgba(11, 16, 32, 0.55);
+  backdrop-filter: blur(10px);
+}
+
+.footerInner {
+  max-width: 1520px;
+  margin: 0 auto;
+  padding: 14px 20px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 14px;
+}
+
+.footerLeft {
+  display: grid;
+  gap: 4px;
+  min-width: 0;
+}
+
+.footerRight {
+  display: flex;
+  justify-content: flex-end;
+  min-width: 0;
+}
+
+.footerTitle {
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.2px;
+  color: rgba(233, 237, 255, 0.96);
+}
+
+.footerText {
+  font-size: 12px;
+  color: rgba(166, 176, 214, 0.95);
+  line-height: 1.4;
+}
+
+@media (max-width: 980px) {
+  .footerInner {
+    padding: 14px 14px;
+    flex-direction: column;
+  }
+}

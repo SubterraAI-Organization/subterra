@@ -74,3 +74,4 @@ Then add and commit normally.
 
 Place additional marker files in `genotype_data/` (e.g., `SAP_imputed.hmp`, `.vcf.gz`, HapMap, marker CSV).
 The genotype service will auto-detect supported files from `data/markers` and `genotype_data`.
+
